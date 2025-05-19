@@ -1,30 +1,46 @@
 #include "inkview.h"
 
-static const int kFontSize = 42;
+static bool is_touched;
+static int x, y;
+static int old_x, old_y;
 
 static int main_handler(int event_type, int param_one, int param_two)
 {
+	iv_mtinfo *touch_info;
+	bool must_redraw = false;
+
     if (EVT_INIT == event_type) {
-        ifont *font = OpenFont("LiberationSans", kFontSize, 0);
+    	old_x = x = ScreenWidth() / 2;
+    	old_y = y = ScreenHeight() / 2;
+    	must_redraw = true;
+    	is_touched = false;
 
-        ClearScreen();
+    	ClearScreen();
+    	FullUpdate();
+    }
+    else if (EVT_POINTERDOWN == event_type || EVT_POINTERMOVE == event_type || EVT_POINTERUP == event_type) {
+    	old_x = x;
+    	old_y = y;
 
-        // Everything here is done to a buffer
-        SetFont(font, BLACK);
-        DrawLine(0, 25, ScreenWidth(), 25, 0x00333333);
-        DrawLine(0, ScreenHeight() - 25, ScreenWidth(), ScreenHeight() - 25, 0x00666666);
-        FillArea(50, 250, ScreenWidth() - 50*2, ScreenHeight() - 250*2, 0x00E0E0E0);
-        FillArea(100, 300, ScreenWidth() - 100*2, ScreenHeight() - 300*2, 0x00A0A0A0);
-        DrawTextRect(0, ScreenHeight()/2 - kFontSize/2, ScreenWidth(), kFontSize, "Hello, world!", ALIGN_CENTER);
+    	touch_info = GetTouchInfo();
+    	x = touch_info->x;
+    	y = touch_info->y;
 
-        // Copies the buffer to the real screen
-        FullUpdate();
-
-        CloseFont(font);
+    	is_touched = EVT_POINTERDOWN == event_type || EVT_POINTERMOVE == event_type;
+    	must_redraw = true;
     }
     else if (EVT_KEYPRESS == event_type) {
         CloseApp();
     }
+
+    if (must_redraw == true) {
+    	DrawCircle(old_x, old_y, 15, WHITE);
+    	PartialUpdate(old_x - 20, old_y - 20, 20 * 2, 20 * 2);
+
+		DrawCircle(x, y, 15, is_touched ? BLACK : LGRAY);
+		PartialUpdate(x - 20, y - 20, 20 * 2, 20 * 2);
+    }
+
     return 0;
 }
 

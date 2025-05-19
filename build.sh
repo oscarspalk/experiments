@@ -1,1 +1,0 @@
-"$PBSDK/bin/arm-obreey-linux-gnueabi-g++" src/main.cpp -o build/experiments.app -linkview
