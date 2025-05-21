@@ -63,42 +63,57 @@ CMAKE_BINARY_DIR = /project
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/experiments.app.dir/all
+all: src/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: src/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/experiments.app.dir/clean
+clean: src/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/experiments.app.dir
+# Directory level rules for directory src
+
+# Recursive "all" directory target.
+src/all: src/CMakeFiles/Experiments.dir/all
+.PHONY : src/all
+
+# Recursive "preinstall" directory target.
+src/preinstall:
+.PHONY : src/preinstall
+
+# Recursive "clean" directory target.
+src/clean: src/CMakeFiles/Experiments.dir/clean
+.PHONY : src/clean
+
+#=============================================================================
+# Target rules for target src/CMakeFiles/Experiments.dir
 
 # All Build rule for target.
-CMakeFiles/experiments.app.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/experiments.app.dir/build.make CMakeFiles/experiments.app.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/experiments.app.dir/build.make CMakeFiles/experiments.app.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/project/CMakeFiles --progress-num=1,2 "Built target experiments.app"
-.PHONY : CMakeFiles/experiments.app.dir/all
+src/CMakeFiles/Experiments.dir/all:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/Experiments.dir/build.make src/CMakeFiles/Experiments.dir/depend
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/Experiments.dir/build.make src/CMakeFiles/Experiments.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/project/CMakeFiles --progress-num=1,2,3 "Built target Experiments"
+.PHONY : src/CMakeFiles/Experiments.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/experiments.app.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /project/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/experiments.app.dir/all
+src/CMakeFiles/Experiments.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /project/CMakeFiles 3
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/Experiments.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /project/CMakeFiles 0
-.PHONY : CMakeFiles/experiments.app.dir/rule
+.PHONY : src/CMakeFiles/Experiments.dir/rule
 
 # Convenience name for target.
-experiments.app: CMakeFiles/experiments.app.dir/rule
-.PHONY : experiments.app
+Experiments: src/CMakeFiles/Experiments.dir/rule
+.PHONY : Experiments
 
 # clean rule for target.
-CMakeFiles/experiments.app.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/experiments.app.dir/build.make CMakeFiles/experiments.app.dir/clean
-.PHONY : CMakeFiles/experiments.app.dir/clean
+src/CMakeFiles/Experiments.dir/clean:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/Experiments.dir/build.make src/CMakeFiles/Experiments.dir/clean
+.PHONY : src/CMakeFiles/Experiments.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

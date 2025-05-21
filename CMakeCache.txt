@@ -127,7 +127,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=Project
+CMAKE_PROJECT_NAME:STATIC=Pocketbook
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/SDK/usr/bin/arm-obreey-linux-gnueabi-ranlib
@@ -190,8 +190,26 @@ CMAKE_TOOLCHAIN_FILE:FILEPATH=/SDK/share/cmake/arm_conf.cmake
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Value Computed by CMake
+Experiments_BINARY_DIR:STATIC=/project/src
+
+//Value Computed by CMake
+Experiments_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+Experiments_SOURCE_DIR:STATIC=/project/src
+
 //ARM|PC Readonly!
 PB_PLATFORM:STRING=ARM
+
+//Value Computed by CMake
+Pocketbook_BINARY_DIR:STATIC=/project
+
+//Value Computed by CMake
+Pocketbook_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+Pocketbook_SOURCE_DIR:STATIC=/project
 
 //Value Computed by CMake
 Project_BINARY_DIR:STATIC=/project
@@ -305,7 +323,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

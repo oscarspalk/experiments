@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 
+project(Pocketbook)
+
 # Where to build the targets
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
@@ -17,7 +19,6 @@ link_directories("${PB_LINK_DIRECTORIES}")
 # Add the standard include directories
 include_directories("${PB_INCLUDE_DIRECTORIES}")
 include_directories("${FREETYPE_INCLUDE_DIRS}")
-
 # Start you CMakeLists.txt here...
-add_executable(experiments.app src/main.cpp)
-target_link_libraries(experiments.app inkview)
+
+add_subdirectory(src)
