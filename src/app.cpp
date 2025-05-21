@@ -26,7 +26,6 @@ namespace experiments
         ifont *font = OpenFont("Roboto", kFontSize, 0);
 
         ClearScreen();
-
         // Everything here is done to a buffer
         SetFont(font, BLACK);
         DrawLine(0, 25, ScreenWidth(), 25, 0x00333333);
