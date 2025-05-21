@@ -13,10 +13,12 @@ namespace experiments
         switch(event_type){
             case EVT_INIT:
                 this->setup();
+                return 1;
             case EVT_EXIT:
                 this->exit();
+                return 1;
         }
-        return 0;
+        return 1;
     }
 
     void App::setup()
