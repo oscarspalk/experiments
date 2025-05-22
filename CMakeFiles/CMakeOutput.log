@@ -332,3 +332,8 @@ Parsed CXX implicit link information from above output:
   implicit fwks: []
 
 
+Checking whether the ASM compiler is Clang using "--version" matched "(clang version)":
+clang version 7.0.0 (https://git.llvm.org/git/clang.git/ e63bbc3a5282f86265da104a9f8b9a74c41fdf37) (https://git.llvm.org/git/llvm.git/ ed2e736452473893a884f1eddcca9a14ed4e3e9e)
+Target: arm-obreey-linux-gnueabi
+Thread model: posix
+InstalledDir: /SDK/usr/bin

@@ -1,7 +1,7 @@
 #include "app.hpp"
 #include <inkview.h>
 
-static const int kFontSize = 42;
+static const int kFontSize = 84;
 
 namespace experiments
 {
@@ -23,17 +23,14 @@ namespace experiments
 
     void App::setup()
     {
-        ifont *font = OpenFont("Roboto", kFontSize, 0);
-
+        ifont *font = OpenFont(FONT_BOLD, kFontSize, 0);
         ClearScreen();
         // Everything here is done to a buffer
+        GetFont(FONT_BOLD)
         SetFont(font, BLACK);
-        DrawLine(0, 25, ScreenWidth(), 25, 0x00333333);
-        DrawLine(0, ScreenHeight() - 25, ScreenWidth(), ScreenHeight() - 25, 0x00666666);
-        FillArea(50, 250, ScreenWidth() - 50 * 2, ScreenHeight() - 250 * 2, 0x00E0E0E0);
-        FillArea(100, 300, ScreenWidth() - 100 * 2, ScreenHeight() - 300 * 2, 0x00A0A0A0);
-        DrawTextRect(0, ScreenHeight() / 2 - kFontSize / 2, ScreenWidth(), kFontSize, "This is roboto now", ALIGN_CENTER);
-        FullUpdate();
+        FillArea(100, 300, ScreenWidth() - 100 * 2, ScreenHeight() - 300 * 2, 0x00FF0000);
+        DrawTextRect(0, ScreenHeight() / 2 - kFontSize / 2, ScreenWidth(), kFontSize, "Back to linux", ALIGN_CENTER);
+        FullUpdateHQ();
         CloseFont(font);
     }
 

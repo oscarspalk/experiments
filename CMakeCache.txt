@@ -14,11 +14,38 @@
 # EXTERNAL cache entries
 ########################
 
+//Build shared libraries
+BUILD_SHARED_LIBS:BOOL=OFF
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/SDK/usr/bin/arm-obreey-linux-gnueabi-addr2line
 
 //Path to a program.
 CMAKE_AR:FILEPATH=/SDK/usr/bin/llvm-ar
+
+//ASM compiler
+CMAKE_ASM_COMPILER:FILEPATH=/SDK/usr/bin/arm-obreey-linux-gnueabi-clang
+
+//LLVM archiver
+CMAKE_ASM_COMPILER_AR:FILEPATH=/SDK/usr/bin/llvm-ar
+
+//Generate index for LLVM archive
+CMAKE_ASM_COMPILER_RANLIB:FILEPATH=CMAKE_ASM_COMPILER_RANLIB-NOTFOUND
+
+//Flags used by the ASM compiler during all build types.
+CMAKE_ASM_FLAGS:STRING=
+
+//Flags used by the ASM compiler during DEBUG builds.
+CMAKE_ASM_FLAGS_DEBUG:STRING=-g
+
+//Flags used by the ASM compiler during MINSIZEREL builds.
+CMAKE_ASM_FLAGS_MINSIZEREL:STRING=-Os -DNDEBUG
+
+//Flags used by the ASM compiler during RELEASE builds.
+CMAKE_ASM_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
+
+//Flags used by the ASM compiler during RELWITHDEBINFO builds.
+CMAKE_ASM_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //Debug|Release|RelWithDebInfo|MinSizeRel
 CMAKE_BUILD_TYPE:STRING=Release
@@ -190,6 +217,18 @@ CMAKE_TOOLCHAIN_FILE:FILEPATH=/SDK/share/cmake/arm_conf.cmake
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Build demos
+CONFIG_LV_BUILD_DEMOS:BOOL=ON
+
+//Build examples
+CONFIG_LV_BUILD_EXAMPLES:BOOL=ON
+
+//If set - install the private headers
+CONFIG_LV_USE_PRIVATE_API:BOOL=OFF
+
+//Use the internal version of ThorVG
+CONFIG_LV_USE_THORVG_INTERNAL:BOOL=ON
+
 //Value Computed by CMake
 Experiments_BINARY_DIR:STATIC=/project/src
 
@@ -198,6 +237,30 @@ Experiments_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 Experiments_SOURCE_DIR:STATIC=/project/src
+
+//Can be used to specify the include dir containing lv_conf.h,
+// to be used in conjuction with LV_CONF_INCLUDE_SIMPLE
+LV_BUILD_CONF_DIR:PATH=
+
+//Use this to specify the location of and/or filename of lv_conf.h
+LV_BUILD_CONF_PATH:PATH=
+
+//Supply the default Kconfig configuration - used with Kconfig
+LV_BUILD_DEFCONFIG_PATH:PATH=
+
+//Disable if the lvgl directory is located at the top-level of
+// your project
+LV_BUILD_LVGL_H_SIMPLE_INCLUDE:BOOL=ON
+
+//Enable if LVGL will be installed on the system or the build system
+// of your application uses a sysroot
+LV_BUILD_LVGL_H_SYSTEM_INCLUDE:BOOL=OFF
+
+//Create variables from the definitions in lv_conf_internal.h
+LV_BUILD_SET_CONFIG_OPTS:BOOL=OFF
+
+//Use Kconfig
+LV_BUILD_USE_KCONFIG:BOOL=OFF
 
 //ARM|PC Readonly!
 PB_PLATFORM:STRING=ARM
@@ -220,6 +283,15 @@ Project_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=/project
 
+//Value Computed by CMake
+lvgl_BINARY_DIR:STATIC=/project/lvgl
+
+//Value Computed by CMake
+lvgl_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+lvgl_SOURCE_DIR:STATIC=/project/lvgl
+
 
 ########################
 # INTERNAL cache entries
@@ -229,6 +301,23 @@ Project_SOURCE_DIR:STATIC=/project
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_ASM_COMPILER
+CMAKE_ASM_COMPILER-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_ASM_COMPILER_AR
+CMAKE_ASM_COMPILER_AR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_ASM_COMPILER_RANLIB
+CMAKE_ASM_COMPILER_RANLIB-ADVANCED:INTERNAL=1
+CMAKE_ASM_COMPILER_WORKS:INTERNAL=1
+//ADVANCED property for variable: CMAKE_ASM_FLAGS
+CMAKE_ASM_FLAGS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_ASM_FLAGS_DEBUG
+CMAKE_ASM_FLAGS_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_ASM_FLAGS_MINSIZEREL
+CMAKE_ASM_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_ASM_FLAGS_RELEASE
+CMAKE_ASM_FLAGS_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_ASM_FLAGS_RELWITHDEBINFO
+CMAKE_ASM_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
 CMAKE_CACHEFILE_DIR:INTERNAL=/project
 //Major version of cmake used to create the current loaded cache
