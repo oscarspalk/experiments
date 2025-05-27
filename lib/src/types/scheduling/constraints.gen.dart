@@ -7,10 +7,14 @@ part of 'constraints.dart';
 
 class _$ConstraintsImpl extends Constraints {
   _$ConstraintsImpl({
+    required this.onlyOneTypePerDay,
     required List<ConstraintCategory> constraintCategories,
     required this.spacing,
   })  : _constraintCategories = constraintCategories,
         super.ctor();
+
+  @override
+  final bool onlyOneTypePerDay;
 
   @override
   List<ConstraintCategory> get constraintCategories =>
@@ -25,6 +29,7 @@ class _$ConstraintsImpl extends Constraints {
     return identical(this, other) ||
         other is Constraints &&
             runtimeType == other.runtimeType &&
+            onlyOneTypePerDay == other.onlyOneTypePerDay &&
             deepEquality(constraintCategories, other.constraintCategories) &&
             spacing == other.spacing;
   }
@@ -33,6 +38,7 @@ class _$ConstraintsImpl extends Constraints {
   int get hashCode {
     return Object.hashAll(<Object?>[
       runtimeType,
+      onlyOneTypePerDay,
       spacing,
     ]);
   }
@@ -42,7 +48,7 @@ class _$ConstraintsImpl extends Constraints {
     String toStringOutput = 'Constraints{<optimized out>}';
     assert(() {
       toStringOutput =
-          'Constraints@<$hexIdentity>{constraintCategories: $constraintCategories, spacing: $spacing}';
+          'Constraints@<$hexIdentity>{onlyOneTypePerDay: $onlyOneTypePerDay, constraintCategories: $constraintCategories, spacing: $spacing}';
       return true;
     }());
     return toStringOutput;
@@ -53,11 +59,14 @@ class _$ConstraintsImpl extends Constraints {
 }
 
 abstract interface class _ConstraintsCopyWithProxy {
+  Constraints onlyOneTypePerDay(bool newValue);
+
   Constraints constraintCategories(List<ConstraintCategory> newValue);
 
   Constraints spacing(Duration newValue);
 
   Constraints call({
+    final bool? onlyOneTypePerDay,
     final List<ConstraintCategory>? constraintCategories,
     final Duration? spacing,
   });
@@ -67,6 +76,11 @@ class _ConstraintsCopyWithProxyImpl implements _ConstraintsCopyWithProxy {
   _ConstraintsCopyWithProxyImpl(this._value);
 
   final Constraints _value;
+
+  @pragma('vm:prefer-inline')
+  @override
+  Constraints onlyOneTypePerDay(bool newValue) =>
+      this(onlyOneTypePerDay: newValue);
 
   @pragma('vm:prefer-inline')
   @override
@@ -80,10 +94,12 @@ class _ConstraintsCopyWithProxyImpl implements _ConstraintsCopyWithProxy {
   @pragma('vm:prefer-inline')
   @override
   Constraints call({
+    final bool? onlyOneTypePerDay,
     final List<ConstraintCategory>? constraintCategories,
     final Duration? spacing,
   }) {
     return _$ConstraintsImpl(
+      onlyOneTypePerDay: onlyOneTypePerDay ?? _value.onlyOneTypePerDay,
       constraintCategories: constraintCategories ?? _value.constraintCategories,
       spacing: spacing ?? _value.spacing,
     );
@@ -95,11 +111,14 @@ sealed class $ConstraintsCopyWithProxyChain<$Result> {
           final $Result Function(Constraints update) chain) =
       _ConstraintsCopyWithProxyChainImpl<$Result>;
 
+  $Result onlyOneTypePerDay(bool newValue);
+
   $Result constraintCategories(List<ConstraintCategory> newValue);
 
   $Result spacing(Duration newValue);
 
   $Result call({
+    final bool? onlyOneTypePerDay,
     final List<ConstraintCategory>? constraintCategories,
     final Duration? spacing,
   });
@@ -114,6 +133,10 @@ class _ConstraintsCopyWithProxyChainImpl<$Result>
 
   @pragma('vm:prefer-inline')
   @override
+  $Result onlyOneTypePerDay(bool newValue) => this(onlyOneTypePerDay: newValue);
+
+  @pragma('vm:prefer-inline')
+  @override
   $Result constraintCategories(List<ConstraintCategory> newValue) =>
       this(constraintCategories: newValue);
 
@@ -124,10 +147,12 @@ class _ConstraintsCopyWithProxyChainImpl<$Result>
   @pragma('vm:prefer-inline')
   @override
   $Result call({
+    final bool? onlyOneTypePerDay,
     final List<ConstraintCategory>? constraintCategories,
     final Duration? spacing,
   }) {
     return _chain(_$ConstraintsImpl(
+      onlyOneTypePerDay: onlyOneTypePerDay ?? _value.onlyOneTypePerDay,
       constraintCategories: constraintCategories ?? _value.constraintCategories,
       spacing: spacing ?? _value.spacing,
     ));

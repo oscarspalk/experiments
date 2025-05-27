@@ -10,7 +10,7 @@ environment:
 dependencies:
   # path: ^1.8.0
   data_class_plugin: any
-
+  fling_units: ^3.0.7
 dev_dependencies:
   lints: ^4.0.0
   test: ^1.24.0

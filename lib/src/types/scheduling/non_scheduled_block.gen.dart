@@ -7,9 +7,15 @@ part of 'non_scheduled_block.dart';
 
 class _$NonScheduledBlockImpl<T> extends NonScheduledBlock<T> {
   _$NonScheduledBlockImpl({
+    required this.constraints,
     required this.duration,
     required this.content,
-  }) : super.ctor();
+    required List<NonScheduledBlock> prerequisites,
+  })  : _prerequisites = prerequisites,
+        super.ctor();
+
+  @override
+  final Constraints constraints;
 
   @override
   final Duration duration;
@@ -18,18 +24,26 @@ class _$NonScheduledBlockImpl<T> extends NonScheduledBlock<T> {
   final T content;
 
   @override
+  List<NonScheduledBlock> get prerequisites =>
+      List<NonScheduledBlock>.unmodifiable(_prerequisites);
+  final List<NonScheduledBlock> _prerequisites;
+
+  @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         other is NonScheduledBlock<T> &&
             runtimeType == other.runtimeType &&
+            constraints == other.constraints &&
             duration == other.duration &&
-            content == other.content;
+            content == other.content &&
+            deepEquality(prerequisites, other.prerequisites);
   }
 
   @override
   int get hashCode {
     return Object.hashAll(<Object?>[
       runtimeType,
+      constraints,
       duration,
       content,
     ]);
@@ -40,7 +54,7 @@ class _$NonScheduledBlockImpl<T> extends NonScheduledBlock<T> {
     String toStringOutput = 'NonScheduledBlock{<optimized out>}';
     assert(() {
       toStringOutput =
-          'NonScheduledBlock@<$hexIdentity>{duration: $duration, content: $content}';
+          'NonScheduledBlock@<$hexIdentity>{constraints: $constraints, duration: $duration, content: $content, prerequisites: $prerequisites}';
       return true;
     }());
     return toStringOutput;
@@ -51,13 +65,19 @@ class _$NonScheduledBlockImpl<T> extends NonScheduledBlock<T> {
 }
 
 abstract interface class _NonScheduledBlockCopyWithProxy<T> {
+  $ConstraintsCopyWithProxyChain<NonScheduledBlock<T>> get constraints;
+
   NonScheduledBlock<T> duration(Duration newValue);
 
   NonScheduledBlock<T> content(T newValue);
 
+  NonScheduledBlock<T> prerequisites(List<NonScheduledBlock> newValue);
+
   NonScheduledBlock<T> call({
+    final Constraints? constraints,
     final Duration? duration,
     final T? content,
+    final List<NonScheduledBlock>? prerequisites,
   });
 }
 
@@ -69,6 +89,12 @@ class _NonScheduledBlockCopyWithProxyImpl<T>
 
   @pragma('vm:prefer-inline')
   @override
+  $ConstraintsCopyWithProxyChain<NonScheduledBlock<T>> get constraints =>
+      $ConstraintsCopyWithProxyChain<NonScheduledBlock<T>>(_value.constraints,
+          (Constraints update) => this(constraints: update));
+
+  @pragma('vm:prefer-inline')
+  @override
   NonScheduledBlock<T> duration(Duration newValue) => this(duration: newValue);
 
   @pragma('vm:prefer-inline')
@@ -77,13 +103,22 @@ class _NonScheduledBlockCopyWithProxyImpl<T>
 
   @pragma('vm:prefer-inline')
   @override
+  NonScheduledBlock<T> prerequisites(List<NonScheduledBlock> newValue) =>
+      this(prerequisites: newValue);
+
+  @pragma('vm:prefer-inline')
+  @override
   NonScheduledBlock<T> call({
+    final Constraints? constraints,
     final Duration? duration,
     final T? content,
+    final List<NonScheduledBlock>? prerequisites,
   }) {
     return _$NonScheduledBlockImpl<T>(
+      constraints: constraints ?? _value.constraints,
       duration: duration ?? _value.duration,
       content: content ?? _value.content,
+      prerequisites: prerequisites ?? _value.prerequisites,
     );
   }
 }
@@ -93,13 +128,19 @@ sealed class $NonScheduledBlockCopyWithProxyChain<T, $Result> {
           final $Result Function(NonScheduledBlock<T> update) chain) =
       _NonScheduledBlockCopyWithProxyChainImpl<T, $Result>;
 
+  $Result constraints(Constraints newValue);
+
   $Result duration(Duration newValue);
 
   $Result content(T newValue);
 
+  $Result prerequisites(List<NonScheduledBlock> newValue);
+
   $Result call({
+    final Constraints? constraints,
     final Duration? duration,
     final T? content,
+    final List<NonScheduledBlock>? prerequisites,
   });
 }
 
@@ -112,6 +153,10 @@ class _NonScheduledBlockCopyWithProxyChainImpl<T, $Result>
 
   @pragma('vm:prefer-inline')
   @override
+  $Result constraints(Constraints newValue) => this(constraints: newValue);
+
+  @pragma('vm:prefer-inline')
+  @override
   $Result duration(Duration newValue) => this(duration: newValue);
 
   @pragma('vm:prefer-inline')
@@ -120,13 +165,22 @@ class _NonScheduledBlockCopyWithProxyChainImpl<T, $Result>
 
   @pragma('vm:prefer-inline')
   @override
+  $Result prerequisites(List<NonScheduledBlock> newValue) =>
+      this(prerequisites: newValue);
+
+  @pragma('vm:prefer-inline')
+  @override
   $Result call({
+    final Constraints? constraints,
     final Duration? duration,
     final T? content,
+    final List<NonScheduledBlock>? prerequisites,
   }) {
     return _chain(_$NonScheduledBlockImpl<T>(
+      constraints: constraints ?? _value.constraints,
       duration: duration ?? _value.duration,
       content: content ?? _value.content,
+      prerequisites: prerequisites ?? _value.prerequisites,
     ));
   }
 }
